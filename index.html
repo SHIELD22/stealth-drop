@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SHIELD22 Access</title>
   <style>
-    <body style="background:black; color:#00FF99; font-family:Courier New, monospace; text-align:center; padding-top:10%;">
-  <h1>🛰️ You Shouldn’t Have Scanned That</h1>
-  <p>ACCESS LOGGED</p>
-  <p>This terminal has recorded your action. Stand by...</p>
     body {
       background-color: black;
-      color: #00ff99;
+      color: #00FF99;
       font-family: 'Courier New', Courier, monospace;
       display: flex;
       flex-direction: column;
@@ -24,7 +19,20 @@
     }
     h1 {
       font-size: 2em;
-      margin-bottom: 0.2em;
+      margin-bottom: 0.5em;
+    }
+    input {
+      background: black;
+      color: #00FF99;
+      border: 1px solid #00FF99;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    #response {
+      margin-top: 15px;
+      display: none;
     }
     p {
       font-size: 1.2em;
@@ -32,9 +40,19 @@
   </style>
 </head>
 <body>
-  <h1>ACCESS GRANTED</h1>
-  <p>Welcome, Agent SHIELD22</p>
-  <p>Clearance Level: OMEGA</p>
-  <p>This action has been logged.</p>
+  <h1>🛰️ You Shouldn’t Have Scanned That</h1>
+  <input id="accessInput" type="text" placeholder="Enter Access Code" onkeydown="grantAccess(event)">
+  <p id="response">✅ Access Granted. Welcome Agent.</p>
+  <p>ACCESS LOGGED</p>
+  <p>This terminal has recorded your action. Stand by...</p>
+
+  <script>
+    function grantAccess(e) {
+      if (e.key === 'Enter') {
+        document.getElementById('accessInput').style.display = 'none';
+        document.getElementById('response').style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
