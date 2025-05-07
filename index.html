@@ -17,10 +17,12 @@
       margin: 0;
       text-align: center;
     }
+
     h1 {
       font-size: 2em;
       margin-bottom: 0.5em;
     }
+
     input {
       background: black;
       color: #00FF99;
@@ -30,12 +32,37 @@
       padding: 10px;
       margin-top: 20px;
     }
-    #response {
+
+    #response, #terminal {
       margin-top: 15px;
       display: none;
     }
-    p {
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background-color: #00FF99;
+      animation: blink 1s step-start infinite;
+      vertical-align: bottom;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    #terminal {
       font-size: 1.2em;
+      white-space: pre-wrap;
+      text-align: left;
+      max-width: 90%;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9em;
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -43,14 +70,28 @@
   <h1>🛰️ You Shouldn’t Have Scanned That</h1>
   <input id="accessInput" type="text" placeholder="Enter Access Code" onkeydown="grantAccess(event)">
   <p id="response">✅ Access Granted. Welcome Agent.</p>
-  <p>ACCESS LOGGED</p>
   <p>This terminal has recorded your action. Stand by...</p>
+
+  <div id="terminal">ACCESS GRANTED... Initializing node...\n\n> <span class="cursor"></span></div>
+
+  <footer>
+    This server is operating on a frequency outside civilian jurisdiction. If you see this, you were never meant to.
+  </footer>
 
   <script>
     function grantAccess(e) {
       if (e.key === 'Enter') {
-        document.getElementById('accessInput').style.display = 'none';
-        document.getElementById('response').style.display = 'block';
+        const code = document.getElementById('accessInput').value.trim().toLowerCase();
+        if (code === 'kal-el') {
+          document.getElementById('accessInput').style.display = 'none';
+          document.querySelector('h1').style.display = 'none';
+          document.getElementById('response').style.display = 'none';
+          document.getElementById('terminal').style.display = 'block';
+        } else {
+          document.getElementById('response').innerText = '🛑 Invalid Code Logged.';
+          document.getElementById('response').style.display = 'block';
+          document.getElementById('accessInput').style.display = 'none';
+        }
       }
     }
   </script>
