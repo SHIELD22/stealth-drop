@@ -74,7 +74,6 @@
 
   <div id="terminal">ACCESS GRANTED... Initializing node...\n\n> <span class="cursor"></span></div>
 
-  <!-- 🎧 Audio welcome file -->
   <audio id="entrySound" autoplay style="display: none;">
     <source src="AA%20ttsMP3.com_VoiceText_2025-5-7_20-17-22.mp3" type="audio/mpeg">
   </audio>
@@ -92,7 +91,7 @@
           document.querySelector('h1').style.display = 'none';
           document.getElementById('response').style.display = 'none';
           document.getElementById('terminal').style.display = 'block';
-          document.getElementById('entrySound').play(); // 🔊 Welcome back
+          document.getElementById('entrySound').play();
         } else {
           document.getElementById('response').innerText = '🛑 Invalid Code Logged.';
           document.getElementById('response').style.display = 'block';
